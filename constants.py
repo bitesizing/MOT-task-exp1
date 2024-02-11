@@ -11,14 +11,14 @@ from helpers import TestingParameters, LoopInfo, ExperimentalInfo, WindowInfo, T
 
 p = TestingParameters(
     restart_from_last = False,
-    use_eyetracker = True,
+    use_eyetracker = False,
 
-    save_log_file = False,
-    save_pickle = False,
+    save_log_file = True,
+    save_pickle = True,
     save_eyetracker_data = True,
 
-    show_gui = False,
-    fullscreen = False,
+    show_gui = True,
+    fullscreen = True,
     longer_initial_wait = True,
     show_overlap = True,
     
