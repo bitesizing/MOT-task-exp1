@@ -1,2 +1,3 @@
-psychopy; python_version == "3.10"
+psychopy; python_version == "3.10"  # important to use python 3.10! 
 tobii-research  # for eyetracker
+ipykernel  # for running in interactive terminals in vscode (not eneeded)

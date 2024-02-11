@@ -7,8 +7,8 @@ Ideally, stimulus movement would be handled by the stimuli themselves. This is t
 from numpy import abs, dot, arctan, array as arr
 from numpy.linalg import norm as mag
 
-from utils import Stim, Partitions
-from _all_vars import w
+from helpers import Stim, Partitions
+from initialise import w
 
 def moveStimuli(parent:Partitions, stim_list:list[Stim], collisions:bool=True, cross:bool=False, change:bool=False, trial_data:dict=None, time_on_flip:float=None):
     """ Moves all stimuli within a partition parent, including bounces, collisions, changes of direction and crosses. Modifies stim_list inplace. """
@@ -120,7 +120,7 @@ def moveStimuli(parent:Partitions, stim_list:list[Stim], collisions:bool=True, c
         # 3) Move stimuli if no collisions
         if not collision_events:             
             # Calculate sudden change of directions
-            if change and (stim_i.id == trial_data['event_id']) and (stim_i.f_since_last_collision > w.framerate/4) and (min(xbounce, ybounce) > w.framerate/4):
+            if change and (stim_i.id == trial_data.event_id) and (stim_i.f_since_last_collision > w.framerate/4) and (min(xbounce, ybounce) > w.framerate/4):
                     stim_i.vel = arr([stim_i.vel[1], -stim_i.vel[0]])
                     event_occurring = True
 
@@ -137,7 +137,7 @@ def moveStimuli(parent:Partitions, stim_list:list[Stim], collisions:bool=True, c
             is_x = True if collision_id=="x" else False
 
             # If stim set to cross the boundary
-            if cross and trial_data['event_id'] is not None and stim_i.id==trial_data['event_id']:
+            if cross and trial_data.event_id is not None and stim_i.id==trial_data.event_id:
                 bounce_angle = abs(arctan(stim_i.vel[0 if is_x else 1]/stim_i.vel[1 if is_x else 0]))
 
                 # If angle >= 45 degrees
@@ -147,7 +147,7 @@ def moveStimuli(parent:Partitions, stim_list:list[Stim], collisions:bool=True, c
                     stim_i.update()  # Resets time value, calculates new bb
                     return True
             
-            trial_data['stim_info'][stim_i.id]['bounces'].append({
+            trial_data.stim_info[stim_i.id]['bounces'].append({
                 'time': time_on_flip,
                 'vel': stim_i.vel,
                 'pos': stim_i.pos

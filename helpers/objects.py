@@ -202,7 +202,7 @@ class Text(TextStim):
     """ Text stim to do texty things. """
 
     def __init__(self, win, text,
-                 height=0.03, pos=(0.0,0.0),
+                 height=0.05, pos=(0.0,0.0),
                  opacity=1, contrast=1,
                  align='center', color='white'):
         super().__init__(win=win, text=text, height=height, alignText=align, anchorHoriz=align, pos=pos, opacity=opacity, contrast=contrast, color=color)

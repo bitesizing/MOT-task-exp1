@@ -10,7 +10,7 @@ device_presets = {
         "framerate": 120
     },
     "IT160705": {
-        "framerate": 165,
+        "framerate": 60,
         "screen_size": [1920, 1200]
     }
 }
